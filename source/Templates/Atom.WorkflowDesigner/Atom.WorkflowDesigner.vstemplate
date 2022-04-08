@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Atom Workflow Designer</Name>
+    <Description>Atom Workflow Designer</Description>
+    <Icon>Atom.WorkflowDesigner.ico</Icon>
+    <TemplateID>3c402634-eff6-4e4e-801a-10b59210e202</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>WorkflowDesigner.workflow</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+      <Reference>
+        <Assembly>System</Assembly>
+      </Reference>
+      <Reference>
+        <Assembly>Atom.Runtime</Assembly>
+      </Reference>
+    </References>
+    <ProjectItem SubType="Designer" CustomTool="WorkflowDesignerCSharpGenerator" ItemType="AdditionalFiles" TargetFileName="$fileinputname$.workflow" ReplaceParameters="true">WorkflowDesigner.workflow</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

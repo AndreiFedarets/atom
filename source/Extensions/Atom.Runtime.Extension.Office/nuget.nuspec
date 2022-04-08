@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Atom.Runtime.Office</id>
+    <version>$(majorVersion).$(minorVersion).$(buildVersion)$(suffixVersion)</version>
+    <title>$(productName)</title>
+    <authors>$(companyName)</authors>
+    <owners>$(companyName)</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.TXT</license>
+    <projectUrl>$(productUrl)</projectUrl>
+    <description>$(productDescription)</description>
+    <releaseNotes></releaseNotes>
+    <copyright>$(productCopyright)</copyright>
+    <tags></tags>
+    <dependencies>
+      <group targetFramework="net40">
+        <dependency id="Atom.Runtime" version="$(majorVersion).0.0" />
+        <!--
+        <dependency id="Microsoft.Office.Interop.Excel" version="15.0.0" />
+        <dependency id="Microsoft.Office.Interop.PowerPoint" version="15.0.0" />
+        <dependency id="Microsoft.Office.Interop.Word" version="15.0.0" />
+        -->
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Atom.Runtime.Extension.Office.dll" target="lib\net40" />
+	<file src="LICENSE.TXT" target="" />
+  </files>
+</package>

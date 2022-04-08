@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Atom Action Designer</Name>
+    <Description>Atom Action Designer</Description>
+    <Icon>Atom.ActionDesigner.ico</Icon>
+    <TemplateID>021e3976-d0e0-4bb9-bd49-841fbd273137</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>ActionDesigner.action</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+      <Reference>
+        <Assembly>System</Assembly>
+      </Reference>
+      <Reference>
+        <Assembly>Atom.Runtime</Assembly>
+      </Reference>
+    </References>
+    <ProjectItem SubType="Designer" CustomTool="ActionDesignerCSharpGenerator" ItemType="AdditionalFiles" TargetFileName="$fileinputname$.action" ReplaceParameters="true">ActionDesigner.action</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

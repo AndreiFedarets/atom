@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable">
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+  <Commands package="PackageGuid">
+    <Menus>
+      <Menu guid="guidAtomMainMenu" id="IDM_VS_MENU_TOOLS_ATOM" priority="0x0700" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>Atom</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+    <Groups>
+      <Group guid="guidAtomMainMenu" id="IDG_VS_MENU_TOOLS_ATOM" priority="0x0000">
+        <Parent guid="guidAtomMainMenu" id="IDM_VS_MENU_TOOLS_ATOM"/>
+      </Group>
+    </Groups>
+    <Buttons>
+      <Button guid="guidAtomMainMenu" id="ShowActionExplorerCommand" priority="0x0000" type="Button">
+        <Parent guid="guidAtomMainMenu" id="IDG_VS_MENU_TOOLS_ATOM" />
+        <Icon guid="ImageCatalogGuid" id="StoredPackage"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Action Explorer</ButtonText>
+        </Strings>
+      </Button>
+      <!--<Button guid="guidAtomMainMenu" id="ShowModuleExplorerCommand" priority="0x0001" type="Button">
+        <Parent guid="guidAtomMainMenu" id="IDG_VS_MENU_TOOLS_ATOM" />
+        <Icon guid="ImageCatalogGuid" id="StoredPackage"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Module Explorer</ButtonText>
+        </Strings>
+      </Button>-->
+      
+      <Button guid="guidAtomMainMenu" id="ManageProjectModulesCommand" priority="0x0300" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_ADD" />
+        <Icon guid="ImageCatalogGuid" id="StoredPackage"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Manage Atom Packages...</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+  <Symbols>
+    <GuidSymbol name="PackageGuid" value="{B8F11126-9A05-424F-823A-F1195F8E96B7}" />
+    <GuidSymbol name="guidAtomMainMenu" value="{D9348BD8-1F34-41F2-8F78-93D8FBB19E4B}">
+      <IDSymbol name="IDM_VS_MENU_TOOLS_ATOM" value="0x1001"/>
+      <IDSymbol name="IDG_VS_MENU_TOOLS_ATOM" value="0x2001" />
+      <IDSymbol name="ShowActionExplorerCommand" value="0x3001"/>
+      <IDSymbol name="ManageProjectModulesCommand" value="0x3002"/>
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

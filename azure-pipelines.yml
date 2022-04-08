@@ -1,0 +1,122 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+#trigger:
+#- master
+
+#pool: Default
+
+pool:
+ vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  sourceDirectory: '$(Build.SourcesDirectory)\source'
+  stagingDirectory: '$(Build.ArtifactStagingDirectory)'
+  buildDirectory: '$(Build.SourcesDirectory)\build'
+  majorVersion: '1'
+  minorVersion: '0'
+  buildVersion: '$(Build.BuildId)'
+  revisionVersion: '0'
+  suffixVersion: '-alpha'
+  companyName: 'Andrei Fedarets'
+  productName: 'Atom'
+  productDescription: 'Automation testing framework'
+  productCopyright: 'Copyright 2020 (C)'
+  productUrl: 'https://dev.azure.com/andreifedarets/Atom'
+  pushPackage: $[ startsWith(variables['Build.SourceBranch'], 'refs/heads/release') ]
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Nuget: Install'
+
+- task: NuGetCommand@2
+  displayName: 'Solution: Nuget Restore'
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: update-assembly-info@2
+  displayName: 'Solution: AssemblyInfo Update'
+  inputs:
+    assemblyInfoFiles: '$(sourceDirectory)\**\AssemblyInfo.cs'
+    company: '$(companyName)'
+    product: '$(productName)'
+    copyright: '$(productCopyright)'
+    fileVersionMajor: '$(majorVersion)'
+    fileVersionMinor: '$(minorVersion)'
+    fileVersionBuild: '$(buildVersion)'
+    fileVersionRevision: '$(revisionVersion)'
+    assemblyVersionMajor: '$(majorVersion)'
+    assemblyVersionMinor: '0'
+    assemblyVersionBuild: '0'
+    assemblyVersionRevision: '0'
+
+- task: replacetokens@3
+  displayName: 'Packages: Nuspec Update'
+  condition: and(succeeded(), eq(variables.pushPackage, 'true'))
+  inputs:
+    rootDirectory: '$(sourceDirectory)'
+    targetFiles: '**\*.nuspec'
+    encoding: 'auto'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: true
+    tokenPrefix: '$('
+    tokenSuffix: ')'
+    
+- task: VSBuild@1
+  displayName: 'Solution: Build'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  displayName: 'Tests: Run'
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  displayName: 'Packages: Create Nupkg'
+  condition: and(succeeded(), eq(variables.pushPackage, 'true'))
+  inputs:
+    command: 'pack'
+    packagesToPack: '$(buildDirectory)\**\*.nuspec'
+    configuration: '$(buildConfiguration)'
+    versioningScheme: 'off'
+    packDestination: '$(stagingDirectory)'
+    
+- task: NuGetCommand@2
+  displayName: 'Packages: Push Nupkg'
+  condition: and(succeeded(), eq(variables.pushPackage, 'true'))
+  inputs:
+    command: 'push'
+    packagesToPush: '$(stagingDirectory)/**/*.nupkg;!$(stagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '0d52f31e-bc80-4c37-99fe-19802cd11cb0/854d6446-40e6-48ab-a305-10f5ce9bc350'
+
+- task: CopyFiles@2
+  displayName: 'Artifacts: Copy VSIX'
+  inputs:
+    SourceFolder: '$(buildDirectory)'
+    Contents: '**\*.vsix'
+    TargetFolder: '$(stagingDirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Artifacts: Copy MSI'
+  inputs:
+    SourceFolder: '$(buildDirectory)'
+    Contents: '**\*.msi'
+    TargetFolder: '$(stagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Artifacts: Publish'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

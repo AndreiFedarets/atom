@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Atom Condition Designer</Name>
+    <Description>Atom Condition Designer</Description>
+    <Icon>Atom.ConditionDesigner.ico</Icon>
+    <TemplateID>267d80b6-9389-426a-92a2-c826c7f76136</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>ConditionDesigner.condition</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+      <Reference>
+        <Assembly>System</Assembly>
+      </Reference>
+      <Reference>
+        <Assembly>Atom.Runtime</Assembly>
+      </Reference>
+    </References>
+    <ProjectItem SubType="Designer" CustomTool="ConditionDesignerCSharpGenerator" ItemType="AdditionalFiles" TargetFileName="$fileinputname$.condition" ReplaceParameters="true">ConditionDesigner.condition</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

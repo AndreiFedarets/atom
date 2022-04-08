@@ -1,0 +1,41 @@
+﻿<Window x:Class="Atom.Design.Extension.Desktop.Controls.ElementDetailsPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        AllowsTransparency="True" WindowStyle="None" Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
+        Height="150" Width="400">
+    <Border Background="LightGray" BorderBrush="DarkGray" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="AddButton" Grid.Column="0" Content="Add" Focusable="False"/>
+                <Button x:Name="SynchronizeButton" Grid.Column="1" Content="Synchronize" Focusable="False"/>
+            </Grid>
+            
+            <ListView Grid.Row="1" ItemsSource="{Binding ElementProperties, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                      SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" Focusable="False">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridView.Columns>
+                            <GridViewColumn DisplayMemberBinding="{Binding Item1}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Item2}" />
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Border>
+</Window>

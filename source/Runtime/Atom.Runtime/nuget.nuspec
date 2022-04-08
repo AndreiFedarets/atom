@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Atom.Runtime</id>
+    <version>$(majorVersion).$(minorVersion).$(buildVersion)$(suffixVersion)</version>
+    <title>$(productName)</title>
+    <authors>$(companyName)</authors>
+    <owners>$(companyName)</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.TXT</license>
+    <projectUrl>$(productUrl)</projectUrl>
+    <description>$(productDescription)</description>
+    <releaseNotes></releaseNotes>
+    <copyright>$(productCopyright)</copyright>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="Atom.Runtime.dll" target="lib\net40" />
+	<file src="LICENSE.TXT" target="" />
+  </files>
+</package>

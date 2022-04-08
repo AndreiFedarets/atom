@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Atom.Client.Win.Views.ActionDesignerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Atom.Client.Win.Controls"
+             Style="{DynamicResource PanelUserControl}">
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <CheckBox Content="Enable data auto-binding" IsChecked="{Binding EnableArgumentsAutoBinding}" />
+                <Button Content="Run" Command="{Binding RunActionCommand}" />
+                <Button Content="Debug" Command="{Binding DebugActionCommand}" />
+            </StackPanel>
+            <controls:ActionInstanceCollection Grid.Row="1" ItemsSource="{Binding Actions}" AddActionCommand="{Binding AddActionCommand}" />
+        </Grid>
+    </Border>
+</UserControl>

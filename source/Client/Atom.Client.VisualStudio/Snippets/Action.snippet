@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Atom Action</Title>
+      <Shortcut>aaction</Shortcut>
+      <Description>Inserts Atom Action</Description>
+      <Author>Andrei Fedarets</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>ActionName</ID>
+          <ToolTip>Enter action name</ToolTip>
+          <Default>Action</Default>
+        </Literal>
+        <Literal>
+          <ID>ActionMessage</ID>
+          <ToolTip>Enter action message</ToolTip>
+          <Default>Action Message</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp" Kind="method decl">
+        <![CDATA[[Atom.Runtime.ActionMethod("$ActionMessage$")]
+        public static void $ActionName$()
+        {
+
+        }]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

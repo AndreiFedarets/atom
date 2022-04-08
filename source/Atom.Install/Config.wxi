@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ProductName="Atom" ?>
+  <?define ProductVersion="1.0.0.0" ?>
+  <?define Manufacturer="Andrei Fedarets" ?>
+  <?define SourceDir="..\..\build\" ?>
+  <?define ExtensionsDir="..\..\build\Extensions\" ?>
+</Include>

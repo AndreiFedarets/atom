@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4248ECA-66FB-4A60-9912-B732237FC71A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Atom.Runtime.Extension.Office</RootNamespace>
+    <AssemblyName>Atom.Runtime.Extension.Office</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\build\Packages\Atom.Runtime.Office\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\build\Packages\Atom.Runtime.Office\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Office.Interop.PowerPoint.15.0.4420.1017\lib\net20\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="_Actions\Excel\ExcelActions.cs" />
+    <Compile Include="_ObjectModel\ApplicationType.cs" />
+    <Compile Include="_ObjectModel\ApplicationVersion.cs" />
+    <Compile Include="_ObjectModel\Excel\ApplicationProvider.cs" />
+    <Compile Include="_ObjectModel\Excel\ExcelApplication.cs" />
+    <Compile Include="_ObjectModel\Excel\IApplicationProvider.cs" />
+    <Compile Include="_ObjectModel\Excel\IExcelApplication.cs" />
+    <Compile Include="_ObjectModel\ICommonApplication.cs" />
+    <Compile Include="_ObjectModel\ICommonApplicationProvider.cs" />
+    <Compile Include="_ObjectModel\Win32\IDispatch.cs" />
+    <Compile Include="_ObjectModel\Win32\Rect.cs" />
+    <Compile Include="_ObjectModel\Win32\_Internal\Constants.cs" />
+    <Compile Include="_ObjectModel\Win32\_Internal\NativeMethods.cs" />
+    <Compile Include="_ObjectModel\Win32\_Internal\NativeWindowsManager.cs" />
+    <Compile Include="_ObjectModel\_Exceptions\OfficeApplicationRunException.cs" />
+    <Compile Include="_ObjectModel\_Internal\ApplicationTypeToProcessNameConverter.cs" />
+    <Compile Include="_ObjectModel\_Internal\ComFinalizer.cs" />
+    <Compile Include="_ObjectModel\_Internal\ComWrapperBase.cs" />
+    <Compile Include="_ObjectModel\_Internal\OfficePathHelper.cs" />
+    <Compile Include="_ObjectModel\_Internal\StringVersionToApplicationVersionConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Key.snk">
+      <Link>Properties\Key.snk</Link>
+    </None>
+    <None Include="nuget.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Runtime\Atom.Runtime\Atom.Runtime.csproj">
+      <Project>{0201f788-4a9d-486f-851e-f808d2066d29}</Project>
+      <Name>Atom.Runtime</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE.TXT">
+      <Link>LICENSE.TXT</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

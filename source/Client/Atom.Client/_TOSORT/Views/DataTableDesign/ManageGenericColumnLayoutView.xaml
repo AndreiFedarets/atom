@@ -1,0 +1,15 @@
+﻿<v:View x:Class="Atom.Client.Views.DataTableDesign.ManageGenericColumnLayoutView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:Atom.Client.Views" Focusable="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Text="{Binding ColumnName}" />
+        <ComboBox Grid.Row="1" ItemsSource="{Binding AvailableTypes}" SelectedItem="{Binding ColumnType}" DisplayMemberPath="UnderlyingType.Name" />
+        <Button Grid.Row="2" Content="Remove" Command="{Binding RemoveCommand}" />
+    </Grid>
+</v:View>

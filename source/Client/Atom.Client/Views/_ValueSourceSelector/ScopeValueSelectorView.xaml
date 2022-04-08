@@ -1,0 +1,6 @@
+﻿<v:View x:Class="Atom.Client.Views.ScopeValueSelectorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:Layex.Views;assembly=Layex">
+    <ListView ItemsSource="{Binding AvailableValues}" SelectedValue="{Binding SelectedValue}" DisplayMemberPath="ValueName"/>
+</v:View>

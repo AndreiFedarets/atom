@@ -1,0 +1,22 @@
+﻿<v:View x:Class="Atom.Client.Desktop.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:Layex.Views;assembly=Layex"
+        MinHeight="600" MinWidth="900" DisplayMode="Tile">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem x:Name="OpenSolution" Header="Open Solution" />
+            </MenuItem>
+            <MenuItem  x:Name="Test" Header="Test" />
+        </Menu>
+        <ContentControl Grid.Row="1" x:Name="ViewContent" />
+        <!--<ContentControl Grid.Row="1" Grid.Column="0" caliburn:View.Model="{Binding Documents}" />
+        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" HorizontalAlignment="Center" />
+        <ContentControl Grid.Row="1" Grid.Column="2" caliburn:View.Model="{Binding SolutionExplorer}" />-->
+    </Grid>
+</v:View>

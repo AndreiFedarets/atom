@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5570B6F6-4B73-4DA7-A190-8E0C71D1FAEA}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Atom.Client</RootNamespace>
+    <AssemblyName>Atom.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=2.0.0.6, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Layex.1.0.117-alpha\lib\net40\Caliburn.Micro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform, Version=2.0.0.6, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Layex.1.0.117-alpha\lib\net40\Caliburn.Micro.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Layex, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c28f3cd3ba59a60f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Layex.1.0.117-alpha\lib\net40\Layex.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Layex.1.0.117-alpha\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\TypeExtensionSelectorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DesignerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="_Extensions\DispatcherExtensions.cs" />
+    <Compile Include="ViewModels\TypeExtensionSelectorViewModel.cs" />
+    <Compile Include="Views\TypeExtensionSelectorView.xaml.cs">
+      <DependentUpon>TypeExtensionSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Extensibility\ExtensionLoader.cs" />
+    <Compile Include="_Extensibility\IExtension.cs" />
+    <Compile Include="_Internal\CompositeDependencyContainer.cs" />
+    <Compile Include="SystemHooks\BaseHook.cs" />
+    <Compile Include="SystemHooks\MouseHook.cs" />
+    <Compile Include="SystemHooks\SystemPoint.cs" />
+    <Compile Include="ViewModels\DesignerViewModel.cs" />
+    <Compile Include="_Converters\SearchTextToSearchPopupOpenConverter.cs" />
+    <Compile Include="_Extensions\ITreeViewItem.cs" />
+    <Compile Include="BootstrapperBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="INotifyDocumentChanged.cs" />
+    <Compile Include="Views\DesignerView.xaml.cs">
+      <DependentUpon>DesignerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Extensions\TreeViewExtensions.cs" />
+    <Compile Include="_Extensions\TreeViewSelectedItemBehaviour.cs" />
+    <None Include="..\..\Key.snk">
+      <Link>Properties\Key.snk</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AddAction.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Design\Atom.Design.Common\Atom.Design.Common.csproj">
+      <Project>{51570852-042C-41F7-9DD2-1EFDC45F93C7}</Project>
+      <Name>Atom.Design.Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Design\Atom.Design.Services\Atom.Design.Services.csproj">
+      <Project>{8a81dab5-0003-4d61-9d81-ebc1d9431c10}</Project>
+      <Name>Atom.Design.Services</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Design\Atom.Design\Atom.Design.csproj">
+      <Project>{25416d2a-62dd-404e-8285-34eb77f6da6f}</Project>
+      <Name>Atom.Design</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Design\Atom.Design.Hosting\Atom.Design.Hosting.csproj">
+      <Project>{615fdfb3-9705-4dc6-80c7-dc347eb45f79}</Project>
+      <Name>Atom.Design.Hosting</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Design\Atom.Design.Reflection\Atom.Design.Reflection.csproj">
+      <Project>{483aa90d-3652-4186-b319-ee631060968b}</Project>
+      <Name>Atom.Design.Reflection</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

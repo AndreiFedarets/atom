@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{81578FD8-141A-4BF2-88DD-9C9044DB9127}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Atom.Design.Reflection.Binary</RootNamespace>
+    <AssemblyName>Atom.Design.Reflection.Binary</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Condition.cs" />
+    <Compile Include="Action.cs" />
+    <Compile Include="ConditionCollection.cs" />
+    <Compile Include="ActionCollection.cs" />
+    <Compile Include="Assembly.cs" />
+    <Compile Include="_Internal\AssemblyInternalLoader.cs" />
+    <Compile Include="AssemblyLoader.cs" />
+    <Compile Include="Table.cs" />
+    <Compile Include="TableCollection.cs" />
+    <Compile Include="TableValue.cs" />
+    <Compile Include="Workflow.cs" />
+    <Compile Include="Metadata\MetadataProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_Internal\SandboxAppDomain.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Key.snk">
+      <Link>Properties\Key.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Runtime\Atom.Runtime\Atom.Runtime.csproj">
+      <Project>{0201f788-4a9d-486f-851e-f808d2066d29}</Project>
+      <Name>Atom.Runtime</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Atom.Design.Common\Atom.Design.Common.csproj">
+      <Project>{51570852-042c-41f7-9dd2-1efdc45f93c7}</Project>
+      <Name>Atom.Design.Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Atom.Design.Hosting\Atom.Design.Hosting.csproj">
+      <Project>{615fdfb3-9705-4dc6-80c7-dc347eb45f79}</Project>
+      <Name>Atom.Design.Hosting</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Atom.Design.Reflection\Atom.Design.Reflection.csproj">
+      <Project>{483aa90d-3652-4186-b319-ee631060968b}</Project>
+      <Name>Atom.Design.Reflection</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

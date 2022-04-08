@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version {FILE_FORMAT_VERSION}
+# Visual Studio 2013
+VisualStudioVersion = {VISUAL_STUDIO_VERSION}
+MinimumVisualStudioVersion = {MINIMUM_VISUAL_STUDIO_VERSION}
+{PROJECTS_LIST}
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		{SOLUTION_PLATFORMS}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{PROJECTS_PLATFORMS}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{NESTED_PROJECTS}
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

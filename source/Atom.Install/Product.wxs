@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:vse="http://schemas.microsoft.com/wix/VSExtension">
+  <?include "Config.wxi"?>
+	<Product Id="*" Name="$(var.ProductName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="ebcc5865-9ff5-4960-931f-4bfad165bf99">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="CabFileName.cab" EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <WixVariable Id="WixUILicenseRtf" Overridable="yes" Value="..\License.rtf"/>
+
+    <UIRef Id="WixUI_InstallDir" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+          <Directory Id="Modules" Name="Modules">
+            <Directory Id="Atom.Module.System" Name="Atom.Module.System" />
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <!--<Component Id="Atom.Client.VisualStudio.AddIn.vsix" Guid="A2CC7D3B-C15E-48A1-9671-A8FFC8AD5A7A">
+        <vse:VsixPackage File="Atom.Client.VisualStudio.AddIn.vsix" PackageId="Atom.Client.VisualStudio.AddIn.37f5041a-ed5e-4d56-8f97-3626e4099eee" Vital="yes" Permanent="no" />
+        <File Id="Atom.Client.VisualStudio.AddIn.vsix" Name="Atom.Client.VisualStudio.AddIn.vsix" Source="$(var.SourceDir)\Atom.Client.VisualStudio.AddIn.vsix" />
+      </Component>-->
+      <Component Id="AtomEnvironmentPath" Guid="CC56F33B-0E32-40C4-B65F-E3B4EDA81FA4" KeyPath="yes">
+        <Environment Id="AtomEnvironmentPath" Name="AtomDir" Value="[INSTALLFOLDER]" Permanent="no" Action="set" System="yes" />
+      </Component>
+      <Component Id="Atom.dll" Guid="95BE10E4-57A2-4A4F-8FDF-4C0A6511F428">
+        <File Id="Atom.dll" Name="Atom.dll" Source="$(var.SourceDir)\Atom.dll" />
+      </Component>
+      <Component Id="Atom.Executor.exe" Guid="6CD43392-1161-4360-A528-CAA68E2F6489">
+        <File Id="Atom.Executor.exe" Name="Atom.Executor.exe" Source="$(var.SourceDir)\Atom.Executor.exe" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="Atom.Module.System">
+      <Component Id="Atom.Module.System.dll" Guid="10A3D1B1-D416-4600-804F-0B74236474D4">
+        <File Id="Atom.Module.System.dll" Name="Atom.Module.System.dll" Source="$(var.SourceDir)\Modules\Atom.Module.System\Atom.Module.System.dll" />
+      </Component>
+    </DirectoryRef>
+    
+    <Feature Id="Atom" Title="Atom" Level="1">
+      <ComponentRef Id="AtomEnvironmentPath" />
+      <ComponentRef Id="Atom.dll" />
+      <ComponentRef Id="Atom.Executor.exe" />
+      <!--<ComponentRef Id="Atom.Client.VisualStudio.AddIn.vsix" />-->
+    </Feature>
+
+    <Feature Id="Modules" Title="Modules" Level="1">
+      <ComponentRef Id="Atom.Module.System.dll" />
+    </Feature>
+    
+  </Product>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+	</Fragment>
+</Wix>
